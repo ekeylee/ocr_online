@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>OCR 图文在线识别</title>
+  <link href="https://cdn.bootcss.com/material-design-lite/1.3.0/material.indigo-pink.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="__STATIC__/loading/loaders.css" />
+</head>
+
+<body style="background:#f3f8f9">
+  <div id="watting"
+    style="display:none;z-index:999;position:fixed;top:0;bottom:0;right:0;left:0;background:rgba(0,0,0,0.7)">
+    <div style="text-align:center;position:absolute;top:45%;right:50%">
+      <div class="loader">
+        <div class="loader-inner pacman">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Uses a header that scrolls with the text, rather than staying
+  locked at the top -->
+  <div class="mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--scroll">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">OCR 识别工具</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation -->
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="">首页</a>
+          <a class="mdl-navigation__link" href="">博客</a>
+          <a class="mdl-navigation__link" href="">Github</a>
+          <a class="mdl-navigation__link" href="">赞助</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Title</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">首页</a>
+        <a class="mdl-navigation__link" href="">博客</a>
+        <a class="mdl-navigation__link" href="">Github</a>
+        <a class="mdl-navigation__link" href="">赞助</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <!-- Your content goes here -->
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--6-col"
+            style="position:relative;height:400px;background:#e8eef2;text-align:center">
+            <div style="position: absolute;top:40%;left:40%">
+              <img src="http://cdn.uedream.cn/file_ocr.png" style="width:80px;text-align:center;">
+              <div id="uploader-demo">
+                <!--用来存放item-->
+                <div id="fileList" class="uploader-list"></div>
+                <div id="filePicker">上传需要识别的图片</div>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="mdl-cell mdl-cell--6-col" style="height:400px;background:#fff">
+            <div style="padding:30px">
+              <div id="content" style="font-size:14px"></div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;position:absolute;width:100%;bottom:20px;font-size:12px">&copy 李益达 Ekey.Lee
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.min.js"></script>
+  <script src="https://cdn.bootcss.com/material-design-lite/1.3.0/material.min.js"></script>
+  <script>
+    // 初始化Web Uploader
+    var uploader = WebUploader.create({
+
+      // 选完文件后，是否自动上传。
+      auto: true,
+      // 文件接收服务端。
+      server: 'https://ocr.ekeylee.com/index.php/index/index/getFile',
+
+      // 选择文件的按钮。可选。
+      // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+      pick: '#filePicker',
+
+      // 只允许选择图片文件。
+      accept: {
+        title: 'Images',
+        extensions: 'gif,jpg,jpeg,bmp,png',
+        mimeTypes: 'image/*'
+
+      }
+    });
+    uploader.on('uploadProgress', function (file, percentage) {
+      $("#watting").css('display', 'block');
+    })
+    uploader.on('uploadSuccess', function (file, response) {
+      $("#watting").css('display', 'none');
+      $("#content").html(response);
+      // console.log("response:", response);
+    });
+  </script>
+</body>
+
+</html>
