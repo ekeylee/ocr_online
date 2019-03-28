@@ -39,7 +39,9 @@ class Index
     $aip = new \AipOcr('10834827', 'hvfbPZHmZ0G7sFPzUdxB6SZY', 'uH5RPQGNmZ2PGRpKcQKeTK7Yz6Dfqrg2');
     $url = 'uploads' . DS . $file_name;
     $image = file_get_contents($url);
-    $result = $aip->basicAccurate($image, ['detect_direction' => true]);
+    $options = array();
+    $options["detect_direction"] = "true";
+    $result = $aip->basicAccurate($image, $options);
     $str = '';
     foreach ($result['words_result'] as $k => $v) {
       $str .= $v['words'];
