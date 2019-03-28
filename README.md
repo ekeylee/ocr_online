@@ -1,4 +1,5 @@
-OCR Online
+在线图片识别
 ===============
-website:
-http://ocr.ekeylee.com
+
+website
+https://ocr.ekeylee.com

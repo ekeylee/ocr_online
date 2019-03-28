@@ -10,6 +10,10 @@
   <link href="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.css" rel="stylesheet">
   <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="__STATIC__/loading/loaders.css" />
+
+  <link rel="shortcut icon" href="http://cdn.uedream.cn/22211.png" />
+
+  <link rel="bookmark" href="http://cdn.uedream.cn/22211.png" />
 </head>
 
 <body style="background:#f3f8f9">
@@ -41,19 +45,19 @@
         <!-- Navigation -->
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="">首页</a>
-          <a class="mdl-navigation__link" href="">博客</a>
-          <a class="mdl-navigation__link" href="">Github</a>
-          <a class="mdl-navigation__link" href="">赞助</a>
+          <a class="mdl-navigation__link" target="_black" href="http://ekeylee.com">博客</a>
+          <a class="mdl-navigation__link" target="_black" href="https://github.com/ekeylee/ocr_online">Github</a>
+
         </nav>
       </div>
     </header>
     <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">Title</span>
+      <span class="mdl-layout-title">OCR 识别工具</span>
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="">首页</a>
-        <a class="mdl-navigation__link" href="">博客</a>
-        <a class="mdl-navigation__link" href="">Github</a>
-        <a class="mdl-navigation__link" href="">赞助</a>
+        <a class="mdl-navigation__link" target="_black" href="http://ekeylee.com">博客</a>
+        <a class="mdl-navigation__link" target="_black" href="https://github.com/ekeylee/ocr_online">Github</a>
+
       </nav>
     </div>
     <main class="mdl-layout__content">
@@ -62,7 +66,7 @@
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--6-col"
             style="position:relative;height:400px;background:#e8eef2;text-align:center">
-            <div style="position: absolute;top:40%;left:40%">
+            <div style="position: absolute;top:40%;width:100%;">
               <img src="http://cdn.uedream.cn/file_ocr.png" style="width:80px;text-align:center;">
               <div id="uploader-demo">
                 <!--用来存放item-->
@@ -73,22 +77,41 @@
             </div>
 
           </div>
-          <div class="mdl-cell mdl-cell--6-col" style="height:400px;background:#fff">
+          <div class="mdl-cell mdl-cell--6-col" style="height:400px;background:#fff;">
             <div style="padding:30px">
-              <div id="content" style="font-size:14px"></div>
+              <div id="content" style="font-size:14px;">
+                <div style="margin-top:160px;text-align:center;font-size:18px;color:#878787">识别区域</div>
+              </div>
             </div>
           </div>
         </div>
-        <div style="text-align:center;position:absolute;width:100%;bottom:20px;font-size:12px">&copy 李益达 Ekey.Lee
+        <div style="padding:20px">
+          <div style="width:100%;font-size:16px;font-weight:800;margin-bottom:10px">赞助名单：<span
+              style="font-size:14px;">（排名按赞助先后顺序）</span></div>
+          <div>
+            <img src="http://cdn.uedream.cn/1553505800755.jpg" style="width:40px;height:40px;border-radius:50%"
+              alt="李益达">
+          </div>
         </div>
+        <div style="padding:20px;font-size:16px;text-align:right">
+
+          <img src="http://cdn.uedream.cn/myqrcode.png" style="width:100px">
+          <div style="margin-top:10px">如果觉得好用可以请作者喝咖啡</div>
+        </div>
+
       </div>
     </main>
-  </div>
 
+    <div style="text-align:center;width:100%;bottom:20px;font-size:12px">&copy 李益达 Ekey.Lee
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.min.js"></script>
   <script src="https://cdn.bootcss.com/material-design-lite/1.3.0/material.min.js"></script>
   <script>
+    function sponsor() {
+      alert('ekeylee')
+    }
     // 初始化Web Uploader
     var uploader = WebUploader.create({
 
@@ -114,7 +137,7 @@
     })
     uploader.on('uploadSuccess', function (file, response) {
       $("#watting").css('display', 'none');
-      $("#content").html(response);
+      $("#content").html('<textarea style="border:0px;width: 100%; height: 330px;padding:10px">' + response + '</textarea>');
       // console.log("response:", response);
     });
   </script>
